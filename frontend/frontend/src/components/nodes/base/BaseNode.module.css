@@ -1,0 +1,166 @@
+.node {
+  --node-accent: #6366f1;
+  background: var(--bg-node);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-node);
+  box-shadow: var(--shadow-node);
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  cursor: default;
+}
+
+.node:hover {
+  border-color: var(--border-hover);
+}
+
+.selected {
+  box-shadow: 0 0 0 2px var(--node-accent), 0 4px 24px rgba(0, 0, 0, 0.6);
+  border-color: var(--node-accent);
+}
+
+/* Accent bindings */
+.accentInput     { --node-accent: var(--accent-input); }
+.accentOutput    { --node-accent: var(--accent-output); }
+.accentLlm       { --node-accent: var(--accent-llm); }
+.accentText      { --node-accent: var(--accent-text); }
+.accentFilter    { --node-accent: var(--accent-filter); }
+.accentMerge     { --node-accent: var(--accent-merge); }
+.accentTransform { --node-accent: var(--accent-transform); }
+.accentHttp      { --node-accent: var(--accent-http); }
+.accentNote      { --node-accent: var(--accent-note); }
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+  background: var(--bg-node-header);
+  border-radius: var(--radius-node) var(--radius-node) 0 0;
+  border-bottom: 1px solid var(--node-accent);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ReactFlow handle overrides — scoped to nodes */
+.node :global(.react-flow__handle) {
+  background: var(--node-accent) !important;
+  border: 2px solid var(--bg-node) !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.node :global(.react-flow__handle:hover) {
+  transform: scale(1.4) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Handle labels — rendered outside the node boundary so they never overlap body content */
+.handleLabel {
+  position: absolute;
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-weight: 500;
+  background: var(--bg-canvas);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-subtle);
+  line-height: 1.4;
+}
+
+.handleLabelLeft {
+  right: calc(100% + 10px);
+  text-align: right;
+}
+
+.handleLabelRight {
+  left: calc(100% + 10px);
+  text-align: left;
+}
+
+/* Form field */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldFlex {
+  flex: 1;
+  min-height: 0;
+}
+
+.fieldLabel {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.input,
+.select,
+.textarea {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 12px;
+  padding: 6px 8px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--node-accent);
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%234b5675' d='M5 7L0.5 2.5h9z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+}
+
+.textarea {
+  resize: none;
+  overflow: hidden;
+  flex: 1;
+}
+
+.infoText {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
